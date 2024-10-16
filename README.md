@@ -1,14 +1,83 @@
-# Instagram-Account-Gender-Detection-MLP-from-scratch
-This repository contains Python code for a multi-layer perceptron (MLP) model, implemented from scratch, which predicts the gender of Instagram account holders using their account data.
+# Instagram Account Gender Detection (MLP from Scratch)
+This repository contains Python code for implementing a Multi-Layer Perceptron (MLP) from scratch, aimed at predicting the gender of Instagram account holders using their account data. The model is trained using preprocessed features, including both numeric and non-numeric data, such as usernames and bios.
 
-## pre-processing
-The training data has been preprocessed first. Since binary values often cause gradient vanishing problems in the network, the values of columns containing binary numbers have been replaced with bipolar numbers. Then, by defining a function, I've normalized the numerical column values using the max-min normalization formula.
+Table of Contents
+Overview
+Preprocessing
+Model
+Usage
+Results
+Contributors
+License
+Overview
+The purpose of this project is to predict the gender of Instagram account holders based on account information such as username, name, bio, and other available account data. The MLP model is built from scratch using Python, without relying on external deep learning libraries like TensorFlow or PyTorch.
 
-For non-numeric features such as username, name, and bio, we use the TF-IDF method. TF-IDF stands for Term Frequency-Inverse Document Frequency, which assigns a numerical value (TF-IDF score) to each word present in a sentence. The number of elements in the resulting vector for a sentence is equal to the number of unique words in that sentence.
+Preprocessing
+The input data has undergone the following preprocessing steps to ensure compatibility with the MLP model:
 
-TF-IDF score for each word in a sentence is calculated as the product of the term frequency (TF) and inverse document frequency (IDF) of that word in the entire dataset.
-The TF of a word in a sentence is the ratio of the number of times the word appears in the sentence to the total number of words in the sentence (word density).
-The IDF of a word in the dataset is the logarithm of the ratio of the total number of sentences to the number of sentences containing that word (term specificity).
-TF-IDF scores are used to represent non-numeric features as vectors of numerical values. These vectors can then be used in machine learning algorithms.
+Binary Feature Transformation:
 
-In addition, by using the TfidfVectorizer function, the length of the resulting vector for each column of the data frame can be changed by setting the max_feature parameter as the number of most frequent words for which TF-IDF has been calculated. The resulting vector lengths for the name and user columns are 6981 and 8926, respectively, where each number represents the count of unique words or strings (excluding the period and space characters, which are considered as separators) in each column of the data frame.
+To avoid gradient vanishing problems that binary values might cause during training, binary columns were replaced with bipolar values (-1 and 1 instead of 0 and 1).
+Normalization:
+
+For numerical columns, values were normalized using Min-Max Normalization to bring them to a standard scale, ensuring no feature dominates the model due to its range of values. This normalization was performed using the formula:
+�
+′
+=
+�
+−
+�
+min
+�
+max
+−
+�
+min
+X 
+′
+ = 
+X 
+max
+​
+ −X 
+min
+​
+ 
+X−X 
+min
+​
+ 
+​
+ 
+TF-IDF Encoding for Non-Numeric Features:
+
+Non-numeric features such as username, name, and bio were transformed into numerical values using TF-IDF (Term Frequency-Inverse Document Frequency). TF-IDF scores help in representing text data as vectors based on the importance of each word in a sentence relative to the entire dataset.
+
+Term Frequency (TF) is the ratio of occurrences of a word in a sentence to the total number of words in that sentence.
+
+Inverse Document Frequency (IDF) is the logarithmic ratio of the total number of sentences to the number of sentences that contain the word.
+
+Adjusting Vector Lengths:
+
+Using the TfidfVectorizer function, the length of the resulting vector for each feature was adjusted using the max_features parameter, which limits the number of words for which TF-IDF scores are calculated. For example:
+Username: Vector length = 6981 (unique words).
+Name: Vector length = 8926 (unique words).
+These vectors provide a numerical representation of non-numeric features, making them suitable for input into the MLP model.
+
+Model
+The Multi-Layer Perceptron (MLP) model is built from scratch in Python, without using high-level libraries. It consists of:
+
+Input Layer: Takes in the preprocessed feature vectors.
+Hidden Layer: A layer with adjustable neurons and activation functions (e.g., ReLU, sigmoid).
+Output Layer: Outputs a prediction for the gender of the account holder.
+Usage
+Preprocess the Data: Before training the model, ensure that the data is preprocessed using the steps outlined in the preprocessing section. Binary features should be transformed, numerical features normalized, and non-numeric text features converted using TF-IDF.
+
+Training the Model: The MLP model can be trained on the preprocessed data by running the provided training script. Ensure that your data is in the proper format and structure before starting the training process.
+
+Evaluating the Model: The model is evaluated on test data that does not contain gender labels. To simulate evaluation, random labels were assigned to the test data for demonstration purposes.
+
+Note: Since the test data is randomly labeled, the evaluation results are not representative of the model's true performance.
+
+Results
+Since the test data has been randomly labeled, the evaluation results are purely illustrative and should not be used to assess the actual performance of the model. These results should be treated as a placeholder until labeled test data is provided for proper validation.
