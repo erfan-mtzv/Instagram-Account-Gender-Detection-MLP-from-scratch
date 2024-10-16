@@ -18,7 +18,7 @@ The input data has undergone the following preprocessing steps to ensure compati
 
      $`X' = \frac{X - X_{\text{min}}}{X_{\text{max}} - X_{\text{min}}}`$
      $$
-     X' = \frac{X - X_{\text{min}}}{X_{\text{max}} - X_{\text{min}}}
+    X' = \frac{X - X_{\text{min}}}{X_{\text{max}} - X_{\text{min}}}
      $$
 
 
