@@ -15,7 +15,9 @@ The input data has undergone the following preprocessing steps to ensure compati
 
 2. **Normalization**:
    - For numerical columns, values were normalized using **Min-Max Normalization** to bring them to a standard scale, ensuring no feature dominates the model due to its range of values. This normalization was performed using the formula:
-      $`X' = \frac{X - X_{\text{min}}}{X_{\text{max}} - X_{\text{min}}}`$
+      $
+     `X' = \frac{X - X_{\text{min}}}{X_{\text{max}} - X_{\text{min}}}`
+     $
 
 
 3. **TF-IDF Encoding for Non-Numeric Features**:
